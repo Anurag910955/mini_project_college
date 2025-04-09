@@ -20,7 +20,7 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://your-frontend.vercel.app'], // replace with your actual frontend URLs
+  origin: 'https://mini-project-college.vercel.app/', 
   credentials: true
 }));
 
