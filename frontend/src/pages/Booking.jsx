@@ -24,7 +24,7 @@ const Booking = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/events/${id}`);
+        const res = await fetch(`https://mini-project-college.onrender.com/api/events/${id}`);
         if (!res.ok) throw new Error("Failed to fetch event data");
         const event = await res.json();
 
@@ -63,7 +63,7 @@ const Booking = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/bookings", {
+      const res = await fetch("https://mini-project-college.onrender.com/api/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
