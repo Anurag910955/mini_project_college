@@ -18,10 +18,20 @@ connectDB();
 // Initialize Express app
 const app = express();
 
+// CORS configuration
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://your-frontend.vercel.app'], // replace with your actual frontend URLs
+  credentials: true
+}));
+
 // Middleware
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Health check / Root route
+app.get('/', (req, res) => {
+  res.send('API is running...');
+});
 
 // Routes
 app.use('/api/auth', authRoutes);
