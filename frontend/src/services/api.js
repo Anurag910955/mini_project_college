@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://mini-project-college.vercel.app/',
+  baseURL: 'https://mini-project-college.onrender.com',
   headers: {
     'Content-Type': 'application/json',
   },
