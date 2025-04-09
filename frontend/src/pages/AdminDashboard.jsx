@@ -16,7 +16,7 @@ const AdminDashboard = () => {
   // Fetch all events
   const fetchEvents = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/admin/events');
+      const res = await fetch('https://mini-project-college.onrender.com/api/admin/events');
       const data = await res.json();
       setEvents(data);
     } catch (error) {
@@ -38,8 +38,8 @@ const AdminDashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = editingId
-      ? `http://localhost:5000/api/admin/events/${editingId}`
-      : 'http://localhost:5000/api/admin/events';
+      ? `https://mini-project-college.onrender.com/api/admin/events/${editingId}`
+      : 'https://mini-project-college.onrender.com/api/admin/events';
     const method = editingId ? 'PUT' : 'POST';
 
     try {
