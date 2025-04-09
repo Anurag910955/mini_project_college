@@ -1,6 +1,8 @@
+
 // src/context/AuthContext.js
 import { createContext, useState, useContext, useEffect } from 'react';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -12,6 +14,7 @@ export const AuthProvider = ({ children }) => {
     if (storedUser) {
       try {
         setUser(JSON.parse(storedUser));
+      // eslint-disable-next-line no-unused-vars
       } catch (error) {
         localStorage.removeItem('user');
       }
@@ -37,4 +40,5 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
