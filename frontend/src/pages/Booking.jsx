@@ -181,6 +181,10 @@ const Booking = () => {
               <div className="flex justify-center mb-4">
                 {totalPayment > 0 ? (
                   <div className="p-3 border-2 border-gray-300 rounded-xl bg-white">
+                  {
+     
+                    console.log(generateUpiPaymentUrl())
+                  }
                     <QRCode 
                       value={generateUpiPaymentUrl()}
                       size={180}
