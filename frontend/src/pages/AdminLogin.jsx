@@ -54,7 +54,7 @@ const AdminLogin = () => {
         <input
           type="email"
           placeholder="admin@example.com"
-          className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm"
+          className="w-full pl-12 pr-4 py-3 text-gray-700 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm placeholder-blue-300"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -69,7 +69,7 @@ const AdminLogin = () => {
         <input
           type="password"
           placeholder="••••••••"
-          className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm"
+          className="w-full pl-12 pr-4 py-3 text-gray-700 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-indigo-400 focus:outline-none transition-all duration-300 shadow-sm placeholder-blue-300"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
