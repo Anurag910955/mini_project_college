@@ -117,7 +117,7 @@ const Booking = () => {
               onChange={handleChange}
               required
               placeholder="Enter your name"
-              className="w-full px-4 py-3 border text-gray-700 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
             />
           </div>
 
@@ -132,7 +132,7 @@ const Booking = () => {
               onChange={handleChange}
               required
               placeholder="you@example.com"
-              className="w-full px-4 py-3 border text-gray-700 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
             />
           </div>
 
@@ -147,7 +147,7 @@ const Booking = () => {
               onChange={handleChange}
               required
               min="1"
-              className="w-full px-4 py-3 border text-gray-700 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
             />
           </div>
 
@@ -159,7 +159,7 @@ const Booking = () => {
               type="text"
               value={totalPayment}
               readOnly
-              className="w-full px-4 py-3  bg-gray-100 border border-gray-300 rounded-xl cursor-not-allowed text-gray-700"
+              className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-xl cursor-not-allowed text-gray-700"
             />
           </div>
 
@@ -171,7 +171,7 @@ const Booking = () => {
               name="paymentMethod"
               value={formData.paymentMethod}
               onChange={handleChange}
-              className="w-full px-4 py-3 text-gray-700 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400"
             >
               <option value="upi">UPI Transfer</option>
               <option value="cash">Cash On Event</option>
@@ -188,7 +188,7 @@ const Booking = () => {
                   type="text"
                   value="9109554428@amazonpay"
                   readOnly
-                  className="w-full px-4 py-3  bg-gray-100 border border-gray-300 rounded-xl text-gray-800 cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-800 cursor-not-allowed"
                 />
               </div>
 
@@ -200,7 +200,7 @@ const Booking = () => {
                   type="file"
                   accept="image/*"
                   onChange={handleFileChange}
-                  className="w-full text-sm text-gray-700"
+                  className="w-full text-sm"
                 />
               </div>
             </>
