@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const API = axios.create({
   baseURL: 'https://mini-project-college.onrender.com',
+  baseURL: 'https://mini-project-college.onrender.com',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -20,6 +21,8 @@ API.interceptors.response.use(
   }
 );
 
+export const login = (data) => API.post('/api/auth/login', data);
+export const register = (data) => API.post('/api/auth/register', data);
 export const login = (data) => API.post('/api/auth/login', data);
 export const register = (data) => API.post('/api/auth/register', data);
 // ... other API calls
