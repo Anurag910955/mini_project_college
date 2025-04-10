@@ -258,7 +258,7 @@ const AdminDashboard = () => {
                     </button>
                     <button
                       onClick={() => handleDelete(event._id)}
-                      className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-red-500 hover:bg-red-600 transition"
+                      className="px-4 py-2 rounded-lg text-sm font-semibold text-blue-700 bg-yellow-200 hover:bg-red-600 transition"
                     >
                       Delete
                     </button>
