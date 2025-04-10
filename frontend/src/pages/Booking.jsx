@@ -19,7 +19,7 @@ const Booking = () => {
 
   const [isPaid, setIsPaid] = useState(false);
   const [paying, setPaying] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState("upi");
+  const [paymentMode, setPaymentMode] = useState("online");
 
   // Fetch event data
   useEffect(() => {
@@ -38,18 +38,12 @@ const Booking = () => {
     fetchEvent();
   }, [id]);
 
-  // Recalculate total payment
+  // Recalculate total payment when ticket count or price changes
   useEffect(() => {
     if (ticketPrice !== null) {
       setTotalPayment(formData.tickets * ticketPrice);
     }
   }, [formData.tickets, ticketPrice]);
-
-  // Reset payment status when payment method changes
-  useEffect(() => {
-    setIsPaid(false);
-    setPaying(false);
-  }, [paymentMethod]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -67,6 +61,12 @@ const Booking = () => {
     }, 2000);
   };
 
+  const handlePaymentModeChange = (e) => {
+    const mode = e.target.value;
+    setPaymentMode(mode);
+    setIsPaid(mode === "cash"); // Cash is considered "paid"
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -79,7 +79,7 @@ const Booking = () => {
           eventId: id,
           ...formData,
           totalPayment,
-          paymentMethod,
+          paymentMode,
         }),
       });
 
@@ -168,23 +168,33 @@ const Booking = () => {
               />
             </div>
 
-            {/* Payment Method Selection */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">
-                Choose Payment Method:
+                Payment Mode:
               </label>
-              <select
-                value={paymentMethod}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl text-gray-800"
-              >
-                <option value="upi">UPI</option>
-                <option value="cash">Pay Cash on Spot</option>
-              </select>
+              <div className="flex gap-6">
+                <label className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    value="online"
+                    checked={paymentMode === "online"}
+                    onChange={handlePaymentModeChange}
+                  />
+                  Online Payment
+                </label>
+                <label className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    value="cash"
+                    checked={paymentMode === "cash"}
+                    onChange={handlePaymentModeChange}
+                  />
+                  Cash on Spot
+                </label>
+              </div>
             </div>
 
-            {/* Conditional Fields */}
-            {paymentMethod === "upi" && (
+            {paymentMode === "online" && (
               <>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-1">
@@ -214,17 +224,23 @@ const Booking = () => {
               </>
             )}
 
+            {paymentMode === "cash" && (
+              <p className="text-blue-600 text-center font-medium">
+                💸 Please pay the amount at the event venue.
+              </p>
+            )}
+
             {error && (
               <p className="text-red-500 text-center font-medium">{error}</p>
             )}
 
             <button
               type="submit"
-              disabled={paymentMethod === "upi" && !isPaid}
+              disabled={!isPaid}
               className={`w-full py-3 rounded-xl font-bold transition duration-300 ${
-                paymentMethod === "upi" && !isPaid
-                  ? "text-white bg-white cursor-not-allowed"
-                  : "text-black bg-blue-600 hover:bg-blue-700"
+                isPaid
+                  ? "text-black bg-blue-600 hover:bg-blue-700"
+                  : "text-white bg-white cursor-not-allowed"
               }`}
             >
               Confirm Booking
