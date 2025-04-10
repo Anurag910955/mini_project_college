@@ -21,12 +21,14 @@ const Booking = () => {
   const [paying, setPaying] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("upi");
 
+  // Fetch event data
   useEffect(() => {
     const fetchEvent = async () => {
       try {
         const res = await fetch(`https://mini-project-college.onrender.com/api/events/${id}`);
         if (!res.ok) throw new Error("Failed to fetch event data");
         const event = await res.json();
+
         setTicketPrice(Number(event.price));
         setEventTitle(event.title || "Event");
       } catch (err) {
@@ -36,11 +38,18 @@ const Booking = () => {
     fetchEvent();
   }, [id]);
 
+  // Recalculate total payment
   useEffect(() => {
     if (ticketPrice !== null) {
       setTotalPayment(formData.tickets * ticketPrice);
     }
   }, [formData.tickets, ticketPrice]);
+
+  // Reset payment status when payment method changes
+  useEffect(() => {
+    setIsPaid(false);
+    setPaying(false);
+  }, [paymentMethod]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,16 +69,12 @@ const Booking = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (paymentMethod === "upi" && !isPaid) {
-      setError("Please complete the payment before confirming booking.");
-      return;
-    }
-
     try {
       const res = await fetch("https://mini-project-college.onrender.com/api/bookings", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           eventId: id,
           ...formData,
@@ -78,7 +83,9 @@ const Booking = () => {
         }),
       });
 
-      if (!res.ok) throw new Error("Booking failed. Please try again.");
+      if (!res.ok) {
+        throw new Error("Booking failed. Please try again.");
+      }
 
       setSubmitted(true);
       setTimeout(() => {
@@ -161,35 +168,22 @@ const Booking = () => {
               />
             </div>
 
-            {/* Payment method selection */}
-            <div className="space-y-2">
-              <p className="text-sm font-semibold text-gray-700">Choose Payment Method:</p>
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  value="upi"
-                  checked={paymentMethod === "upi"}
-                  onChange={() => setPaymentMethod("upi")}
-                />
-                <span>Pay Now (UPI)</span>
+            {/* Payment Method Selection */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Choose Payment Method:
               </label>
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  value="cash"
-                  checked={paymentMethod === "cash"}
-                  onChange={() => {
-                    setPaymentMethod("cash");
-                    setIsPaid(true); // Allow submit if cash is selected
-                  }}
-                />
-                <span>Pay Cash on Spot</span>
-              </label>
+              <select
+                value={paymentMethod}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl text-gray-800"
+              >
+                <option value="upi">UPI</option>
+                <option value="cash">Pay Cash on Spot</option>
+              </select>
             </div>
 
-            {/* Conditional UPI Section */}
+            {/* Conditional Fields */}
             {paymentMethod === "upi" && (
               <>
                 <div>
@@ -220,13 +214,6 @@ const Booking = () => {
               </>
             )}
 
-            {/* Cash message */}
-            {paymentMethod === "cash" && (
-              <p className="text-blue-600 text-sm font-medium text-center">
-                💵 You’ve chosen to pay cash on spot. Please be prepared with ₹{totalPayment} at the event.
-              </p>
-            )}
-
             {error && (
               <p className="text-red-500 text-center font-medium">{error}</p>
             )}
@@ -235,7 +222,7 @@ const Booking = () => {
               type="submit"
               disabled={paymentMethod === "upi" && !isPaid}
               className={`w-full py-3 rounded-xl font-bold transition duration-300 ${
-                (paymentMethod === "upi" && !isPaid)
+                paymentMethod === "upi" && !isPaid
                   ? "text-white bg-white cursor-not-allowed"
                   : "text-black bg-blue-600 hover:bg-blue-700"
               }`}
