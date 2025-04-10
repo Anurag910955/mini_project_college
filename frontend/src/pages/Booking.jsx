@@ -161,7 +161,7 @@ const Booking = () => {
               </label>
               <input
                 type="text"
-                value="9109554428@amazonpay"
+                value="9109554428@ybl"
                 readOnly
                 className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-800 cursor-not-allowed"
               />
@@ -181,7 +181,7 @@ const Booking = () => {
                   <button
                     type="button"
                     onClick={() => setIsPaid(true)}
-                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-3 rounded-xl"
+                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-blue font-semibold py-3 rounded-xl"
                   >
                     I Have Paid
                   </button>
