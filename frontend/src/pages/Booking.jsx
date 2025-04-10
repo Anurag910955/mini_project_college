@@ -168,7 +168,7 @@ const Booking = () => {
             </label>
             <input
               type="text"
-              value="9109554428@amazonpay"
+              value="9109554428@ybl"
               readOnly
               className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded-2xl text-blue-700 font-semibold tracking-wider cursor-not-allowed"
             />
@@ -197,8 +197,8 @@ const Booking = () => {
             disabled={!isPaid}
             className={`w-full py-3 rounded-2xl font-bold shadow-md transition duration-300 ${
               isPaid
-                ? "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg"
-                : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                ? "bg-blue-600 text-black hover:bg-blue-700 hover:shadow-lg"
+                : "bg-white text-white cursor-not-allowed"
             }`}
           >
             📩 Confirm Booking
