@@ -131,7 +131,7 @@ const AdminDashboard = () => {
           placeholder="Event Title"
           value={formData.title}
           onChange={handleChange}
-          className="p-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm placeholder-blue-300"
+          className="p-4 border rounded-xl text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm placeholder-blue-300"
           required
         />
 
@@ -140,7 +140,7 @@ const AdminDashboard = () => {
           placeholder="Event Description"
           value={formData.description}
           onChange={handleChange}
-          className="p-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm placeholder-blue-300"
+          className="p-4 border rounded-xl text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm placeholder-blue-300"
           required
         />
 
@@ -152,7 +152,7 @@ const AdminDashboard = () => {
               name="date"
               value={formData.date}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full p-3 border text-gray-800 border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
             />
           </div>
@@ -165,7 +165,7 @@ const AdminDashboard = () => {
               placeholder="e.g., 10:00 AM to 12:00 PM"
               value={formData.time}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-blue-300"
+              className="w-full p-3 border text-gray-800 border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-blue-300"
               required
             />
           </div>
@@ -177,7 +177,7 @@ const AdminDashboard = () => {
           placeholder="Event Location"
           value={formData.location}
           onChange={handleChange}
-          className="p-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm placeholder-blue-300"
+          className="p-4 border rounded-xl text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm placeholder-blue-300"
           required
         />
 
@@ -187,7 +187,7 @@ const AdminDashboard = () => {
           placeholder="Ticket Price"
           value={formData.price}
           onChange={handleChange}
-          className="p-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm placeholder-blue-300"
+          className="p-4 border rounded-xl text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm placeholder-blue-300"
           required
         />
 
@@ -197,7 +197,7 @@ const AdminDashboard = () => {
           placeholder="Image URL"
           value={formData.image}
           onChange={handleChange}
-          className="p-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm placeholder-blue-300"
+          className="p-4 border rounded-xl text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm placeholder-blue-300"
           required
         />
 
@@ -235,7 +235,7 @@ const AdminDashboard = () => {
                   <td className="p-4 border">
                     <button
                       onClick={() => handleEdit(event)}
-                      className="px-4 py-2 rounded-lg text-sm font-semibold text-blue-400 hover:bg-yellow-500 hover:text-blue-600 transition transform hover:scale-105"
+                      className="px-4 py-2 rounded-lg text-sm font-semibold text-blue-400 bg-amber-100 hover:text-blue-600 transition transform hover:scale-105"
                     >
                       Edit
                     </button>
