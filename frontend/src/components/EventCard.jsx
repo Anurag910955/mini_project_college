@@ -11,7 +11,7 @@ const EventCard = ({ event }) => {
     <img
       src={event?.image || "/placeholder.jpg"}
       alt={event?.title || "Event"}
-      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+      className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
     />
     <div className="absolute top-2 right-2 bg-yellow-400 text-sm text-black font-semibold px-3 py-1 rounded-full shadow-md">
       ₹{event?.price ?? "Free"}
