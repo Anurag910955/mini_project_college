@@ -23,7 +23,7 @@ const Booking = () => {
   const [paying, setPaying] = useState(false);
   
   // UPI payment info
-  const upiId = "9109554428@amazonpay";
+  const upiId = "9109554428@ybl";
   const merchantName = "Eventify";
 
   // Fetch event data
