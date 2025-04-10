@@ -13,6 +13,7 @@ import ThankYou from './pages/ThankYou';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import AdminDashboard from './pages/AdminDashboard';
+import Services from './pages/Services'; 
 import AdminLogin from './pages/AdminLogin';
 
 const Layout = () => {
@@ -30,7 +31,8 @@ const Layout = () => {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin-login" element={<AdminLogin />} />
-          <Route path="/admin-dashboard" element={<AdminDashboard />} /> 
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/services" element={<Services />} /> 
 
 
           {/* Protected routes */}
