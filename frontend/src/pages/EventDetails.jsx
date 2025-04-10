@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation} from "react-router-dom";
 
 const EventDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [event, setEvent] = useState(null);
+  const location = useLocation();
+  const [event, setEvent] = useState(location.state?.event || null);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
