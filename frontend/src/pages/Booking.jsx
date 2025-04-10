@@ -196,8 +196,8 @@ const Booking = () => {
           disabled={!isPaid}
           className={`w-full py-3 rounded-xl font-bold transition duration-300 ${
             isPaid
-              ? "text-blue bg-blue-600 hover:bg-blue-700"
-              : " cursor-not-allowed"
+              ? "text-black bg-blue-600 hover:bg-blue-700"
+              : "bg-white text-gray-100 cursor-not-allowed"
           }`}
         >
           Confirm Booking
