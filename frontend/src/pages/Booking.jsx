@@ -115,7 +115,7 @@ const Booking = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              placeholder="e.g., John Doe"
+              placeholder="Name"
               className="w-full px-4 py-3 text-gray-900 bg-white/80 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
             />
           </div>
@@ -201,7 +201,7 @@ const Booking = () => {
                 : "bg-white text-white cursor-not-allowed"
             }`}
           >
-            📩 Confirm Booking
+             Confirm Booking
           </button>
         </form>
       ) : (
