@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import QRCode from "qrcode.react"; // You'll need to install this package: npm install qrcode.react
 
 const Booking = () => {
   const { id } = useParams();
@@ -19,6 +20,10 @@ const Booking = () => {
 
   const [isPaid, setIsPaid] = useState(false);
   const [paying, setPaying] = useState(false);
+  
+  // UPI payment info
+  const upiId = "9109554428@amazonpay";
+  const merchantName = "Eventify";
 
   // Fetch event data
   useEffect(() => {
@@ -88,132 +93,154 @@ const Booking = () => {
     }
   };
 
+  // Generate UPI payment URL for the QR code
+  const generateUpiPaymentUrl = () => {
+    const paymentReference = `Eventify-${eventTitle}-${Date.now()}`;
+    // Standard UPI deep link format
+    return `upi://pay?pa=${upiId}&pn=${merchantName}&am=${totalPayment}&tn=${encodeURIComponent(`Booking for ${eventTitle}`)}&tr=${paymentReference}`;
+  };
+
   return (
     <div className="w-screen min-h-screen bg-gradient-to-br from-cyan-100 via-white to-blue-100 flex items-center justify-center p-6">
-  <div className="w-full max-w-xl bg-white shadow-2xl rounded-3xl p-10 transition-all duration-300 hover:shadow-3xl hover:scale-[1.01]">
-    <h2 className="text-4xl font-extrabold text-center text-blue-700 mb-4 tracking-wide">
-      Book Your Spot
-    </h2>
-    <p className="text-center text-gray-600 mb-6 text-lg">
-      You're booking for:{" "}
-      <span className="text-black font-semibold">{eventTitle}</span>
-    </p>
-
-    {ticketPrice === null ? (
-      <p className="text-center text-gray-500">Loading event details...</p>
-    ) : !submitted ? (
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Your Name:
-          </label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            placeholder="Name"
-            className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Email Address:
-          </label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            placeholder="E-mail"
-            className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Number of Tickets:
-          </label>
-          <input
-            type="number"
-            name="tickets"
-            value={formData.tickets}
-            min="1"
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Total Payment (₹):
-          </label>
-          <input
-            type="text"
-            value={isNaN(totalPayment) ? "" : totalPayment}
-            readOnly
-            className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-700 cursor-not-allowed"
-          />
-        </div>
-
-        {/* New UPI ID field */}
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Pay to this UPI ID:
-          </label>
-          <input
-            type="text"
-            value="9109554428@amazonpay"
-            readOnly
-            className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-800 cursor-not-allowed"
-          />
-        </div>
-
-        {error && (
-          <p className="text-red-500 text-center font-medium">{error}</p>
-        )}
-
-        {!isPaid ? (
-          <button
-            type="button"
-            onClick={handleFakePayment}
-            className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold py-3 rounded-xl hover:from-yellow-500 hover:to-yellow-600 transition duration-300"
-          >
-            {paying ? "Processing Payment..." : "Pay Now"}
-          </button>
-        ) : (
-          <p className="text-green-600 text-center font-semibold">
-            Payment Successful ✅
-          </p>
-        )}
-
-        <button
-          type="submit"
-          disabled={!isPaid}
-          className={`w-full py-3 rounded-xl font-bold transition duration-300 ${
-            isPaid
-              ? "text-blue bg-blue-600 hover:bg-blue-700"
-              : " cursor-not-allowed"
-          }`}
-        >
-          Confirm Booking
-        </button>
-      </form>
-    ) : (
-      <div className="text-center mt-8">
-        <p className="text-green-600 text-lg font-medium">
-          🎉 Booking successful! Redirecting...
+      <div className="w-full max-w-xl bg-white shadow-2xl rounded-3xl p-10 transition-all duration-300 hover:shadow-3xl hover:scale-[1.01]">
+        <h2 className="text-4xl font-extrabold text-center text-blue-700 mb-4 tracking-wide">
+          Book Your Spot
+        </h2>
+        <p className="text-center text-gray-600 mb-6 text-lg">
+          You're booking for:{" "}
+          <span className="text-black font-semibold">{eventTitle}</span>
         </p>
+
+        {ticketPrice === null ? (
+          <p className="text-center text-gray-500">Loading event details...</p>
+        ) : !submitted ? (
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Your Name:
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                placeholder="Name"
+                className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Email Address:
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="E-mail"
+                className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Number of Tickets:
+              </label>
+              <input
+                type="number"
+                name="tickets"
+                value={formData.tickets}
+                min="1"
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Total Payment (₹):
+              </label>
+              <input
+                type="text"
+                value={isNaN(totalPayment) ? "" : totalPayment}
+                readOnly
+                className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-700 cursor-not-allowed"
+              />
+            </div>
+
+            {/* QR Code Payment Section */}
+            <div className="mt-6">
+              <p className="block text-sm font-semibold text-gray-700 mb-3 text-center">
+                Scan QR Code to Pay:
+              </p>
+              <div className="flex justify-center mb-4">
+                {totalPayment > 0 ? (
+                  <div className="p-3 border-2 border-gray-300 rounded-xl bg-white">
+                    <QRCode 
+                      value={generateUpiPaymentUrl()}
+                      size={180}
+                      level="H"
+                      includeMargin={true}
+                      renderAs="svg"
+                    />
+                  </div>
+                ) : (
+                  <p className="text-gray-500 text-center">
+                    Please select ticket quantity to generate payment QR
+                  </p>
+                )}
+              </div>
+              <p className="text-center text-sm text-gray-600 mb-2">
+                UPI ID: {upiId}
+              </p>
+              <p className="text-center text-xs text-gray-500 mb-6">
+                Scan with any UPI app (Google Pay, PhonePe, Paytm, etc.)
+              </p>
+            </div>
+
+            {error && (
+              <p className="text-red-500 text-center font-medium">{error}</p>
+            )}
+
+            {!isPaid ? (
+              <button
+                type="button"
+                onClick={handleFakePayment}
+                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold py-3 rounded-xl hover:from-yellow-500 hover:to-yellow-600 transition duration-300"
+              >
+                {paying ? "Processing Payment..." : "I've Made the Payment"}
+              </button>
+            ) : (
+              <p className="text-green-600 text-center font-semibold">
+                Payment Successful ✅
+              </p>
+            )}
+
+            <button
+              type="submit"
+              disabled={!isPaid}
+              className={`w-full py-3 rounded-xl font-bold transition duration-300 ${
+                isPaid
+                  ? "bg-blue-600 hover:bg-blue-700 text-white"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
+              }`}
+            >
+              Confirm Booking
+            </button>
+          </form>
+        ) : (
+          <div className="text-center mt-8">
+            <p className="text-green-600 text-lg font-medium">
+              🎉 Booking successful! Redirecting...
+            </p>
+          </div>
+        )}
       </div>
-    )}
-  </div>
-</div>
-
-
+    </div>
   );
 };
 
