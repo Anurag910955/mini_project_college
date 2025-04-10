@@ -80,7 +80,7 @@ const Booking = () => {
   const generateUpiUrl = () => {
     const tn = `Booking for ${eventTitle}`;
     const tr = `Eventify-${eventTitle}-${Date.now()}`;
-    return `upi://pay?pa=9109554428@amazonpay&pn=Eventify&am=${totalPayment}&tn=${encodeURIComponent(tn)}&tr=${tr}`;
+    return `upi://pay?pa=9109554428@ybl&pn=Eventify&am=${totalPayment}&tn=${encodeURIComponent(tn)}&tr=${tr}`;
   };
 
   return (
@@ -198,8 +198,8 @@ const Booking = () => {
               disabled={!isPaid}
               className={`w-full py-3 rounded-xl font-bold transition duration-300 ${
                 isPaid
-                  ? "text-white bg-blue-600 hover:bg-blue-700"
-                  : "bg-gray-300 cursor-not-allowed text-gray-500"
+                  ? "text-black bg-blue-600 hover:bg-blue-700"
+                  : "bg-gray-300 cursor-not-allowed text-white"
               }`}
             >
               Confirm Booking
