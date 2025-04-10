@@ -160,6 +160,19 @@ const Booking = () => {
           />
         </div>
 
+        {/* New UPI ID field */}
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-1">
+            Pay to this UPI ID:
+          </label>
+          <input
+            type="text"
+            value="9109554428@amazonpay"
+            readOnly
+            className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-800 cursor-not-allowed"
+          />
+        </div>
+
         {error && (
           <p className="text-red-500 text-center font-medium">{error}</p>
         )}
@@ -183,8 +196,8 @@ const Booking = () => {
           disabled={!isPaid}
           className={`w-full py-3 rounded-xl font-bold transition duration-300 ${
             isPaid
-              ? " text-blue "
-              : " text-gray-50 cursor-not-allowed"
+              ? "text-white bg-blue-600 hover:bg-blue-700"
+              : "text-gray-50 bg-gray-400 cursor-not-allowed"
           }`}
         >
           Confirm Booking
@@ -199,6 +212,7 @@ const Booking = () => {
     )}
   </div>
 </div>
+
 
   );
 };
