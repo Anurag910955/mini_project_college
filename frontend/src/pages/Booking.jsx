@@ -90,21 +90,21 @@ const Booking = () => {
 
   return (
     <div className="w-screen min-h-screen bg-gradient-to-br from-cyan-100 via-white to-blue-100 flex items-center justify-center p-6">
-    <div className="w-full max-w-xl bg-white shadow-2xl rounded-3xl p-12 transition-all duration-300 hover:shadow-3xl hover:scale-[1.02]">
-      <h2 className="text-4xl font-extrabold text-center text-blue-700 mb-6 tracking-wide">
-        Book Your Spot
+    <div className="w-full max-w-xl bg-white shadow-2xl rounded-3xl p-10 transition-all duration-300 hover:shadow-3xl hover:scale-[1.01] border border-blue-100">
+      <h2 className="text-4xl font-extrabold text-center text-blue-700 mb-2 tracking-wide drop-shadow-md">
+        🎫 Book Your Spot
       </h2>
       <p className="text-center text-gray-600 mb-6 text-lg">
         You're booking for:{" "}
-        <span className="text-black font-semibold">{eventTitle}</span>
+        <span className="text-black font-semibold italic">{eventTitle}</span>
       </p>
   
       {ticketPrice === null ? (
-        <p className="text-center text-gray-500">Loading event details...</p>
+        <p className="text-center text-gray-500 animate-pulse">Loading event details...</p>
       ) : !submitted ? (
-        <form onSubmit={handleSubmit} className="space-y-8">
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="group">
+            <label className="block text-sm font-semibold text-gray-700 mb-1 group-hover:text-blue-500 transition">
               Your Name:
             </label>
             <input
@@ -113,13 +113,13 @@ const Booking = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              placeholder="Enter your full name"
-              className="w-full px-6 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              placeholder="John Doe"
+              className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
             />
           </div>
   
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+          <div className="group">
+            <label className="block text-sm font-semibold text-gray-700 mb-1 group-hover:text-blue-500 transition">
               Email Address:
             </label>
             <input
@@ -128,13 +128,13 @@ const Booking = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              placeholder="Enter your email"
-              className="w-full px-6 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              placeholder="you@example.com"
+              className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
             />
           </div>
   
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+          <div className="group">
+            <label className="block text-sm font-semibold text-gray-700 mb-1 group-hover:text-blue-500 transition">
               Number of Tickets:
             </label>
             <input
@@ -144,50 +144,49 @@ const Booking = () => {
               min="1"
               onChange={handleChange}
               required
-              className="w-full px-6 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
             />
           </div>
   
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
               Total Payment (₹):
             </label>
             <input
               type="text"
               value={isNaN(totalPayment) ? "" : totalPayment}
               readOnly
-              className="w-full px-6 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-700 cursor-not-allowed"
+              className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-700 cursor-not-allowed"
             />
           </div>
   
-          {/* New UPI ID field */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
               Pay to this UPI ID:
             </label>
             <input
               type="text"
               value="9109554428@amazonpay"
               readOnly
-              className="w-full px-6 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-800 cursor-not-allowed"
+              className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-800 cursor-not-allowed tracking-wide"
             />
           </div>
   
           {error && (
-            <p className="text-red-500 text-center font-medium">{error}</p>
+            <p className="text-red-500 text-center font-medium animate-pulse">{error}</p>
           )}
   
           {!isPaid ? (
             <button
               type="button"
               onClick={handleFakePayment}
-              className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold py-3 rounded-xl hover:from-yellow-500 hover:to-yellow-600 transition duration-300"
+              className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold py-3 rounded-xl hover:from-yellow-500 hover:to-yellow-600 transition duration-300 shadow-md"
             >
               {paying ? "Processing Payment..." : "Pay Now"}
             </button>
           ) : (
-            <p className="text-green-600 text-center font-semibold">
-              Payment Successful ✅
+            <p className="text-green-600 text-center font-semibold animate-pulse">
+              ✅ Payment Successful
             </p>
           )}
   
@@ -196,8 +195,8 @@ const Booking = () => {
             disabled={!isPaid}
             className={`w-full py-3 rounded-xl font-bold transition duration-300 ${
               isPaid
-                ? "text-white bg-blue-600 hover:bg-blue-700"
-                : "text-white bg-gray-300 cursor-not-allowed"
+                ? "bg-blue-600 text-white hover:bg-blue-700 shadow-lg"
+                : "bg-gray-200 text-gray-400 cursor-not-allowed"
             }`}
           >
             Confirm Booking
@@ -205,7 +204,7 @@ const Booking = () => {
         </form>
       ) : (
         <div className="text-center mt-8">
-          <p className="text-green-600 text-lg font-medium">
+          <p className="text-green-600 text-lg font-medium animate-bounce">
             🎉 Booking successful! Redirecting...
           </p>
         </div>
@@ -213,7 +212,6 @@ const Booking = () => {
     </div>
   </div>
   
-
 
   );
 };
