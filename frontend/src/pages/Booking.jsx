@@ -197,7 +197,7 @@ const Booking = () => {
           className={`w-full py-3 rounded-xl font-bold transition duration-300 ${
             isPaid
               ? "text-blue bg-blue-600 hover:bg-blue-700"
-              : "text-gray-50 bg-gray-400 cursor-not-allowed"
+              : "text-gray bg-gray-400 cursor-not-allowed"
           }`}
         >
           Confirm Booking
