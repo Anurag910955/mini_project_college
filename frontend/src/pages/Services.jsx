@@ -34,7 +34,7 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white px-4 py-16">
+    <div className=" w-screen h-full flex items-center justify-center bg-gradient-to-b from-blue-50 to-white px-4 py-16">
       {loading ? (
         <div className="text-center text-gray-500 text-lg animate-pulse">
           Loading services...
