@@ -146,7 +146,7 @@ const Booking = () => {
               value={formData.tickets}
               onChange={handleChange}
               required
-              min=""
+              min="0"
               className="w-full px-4 py-3 border text-gray-700 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
             />
           </div>
