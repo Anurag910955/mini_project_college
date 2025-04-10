@@ -16,7 +16,6 @@ const AdminDashboard = () => {
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState(''); // 'success' or 'error'
 
-  // Show and auto-hide message
   const showMessage = (text, type = 'success') => {
     setMessage(text);
     setMessageType(type);
@@ -94,7 +93,26 @@ const AdminDashboard = () => {
       image: event.image,
     });
     setEditingId(event._id);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // optional scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this event?');
+    if (!confirmDelete) return;
+
+    try {
+      const res = await fetch(`https://mini-project-college.onrender.com/api/admin/events/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!res.ok) throw new Error('Failed to delete event');
+
+      showMessage('Event deleted successfully!', 'success');
+      fetchEvents();
+    } catch (error) {
+      console.error('Error deleting event:', error);
+      showMessage('Failed to delete event.', 'error');
+    }
   };
 
   return (
@@ -103,7 +121,6 @@ const AdminDashboard = () => {
         Admin Dashboard
       </h1>
 
-      {/* Message Box */}
       {message && (
         <div
           className={`max-w-3xl mx-auto mb-6 text-center p-4 rounded-xl font-medium transition-all duration-300 ${
@@ -116,7 +133,7 @@ const AdminDashboard = () => {
         </div>
       )}
 
-      {/* Form Section */}
+      {/* Event Form */}
       <form
         onSubmit={handleSubmit}
         className="bg-white/80 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-blue-200 max-w-4xl mx-auto grid gap-8 transition-all duration-500"
@@ -221,7 +238,7 @@ const AdminDashboard = () => {
                 <th className="p-4 border">Location</th>
                 <th className="p-4 border">Tickets Sold</th>
                 <th className="p-4 border">Total Collected</th>
-                <th className="p-4 border">Action</th>
+                <th className="p-4 border">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white text-gray-700">
@@ -232,12 +249,18 @@ const AdminDashboard = () => {
                   <td className="p-4 border">{event.location}</td>
                   <td className="p-4 border">{event.ticketsSold || 0}</td>
                   <td className="p-4 border">₹{event.totalAmount || 0}</td>
-                  <td className="p-4 border">
+                  <td className="p-4 border flex gap-3">
                     <button
                       onClick={() => handleEdit(event)}
-                      className="px-4 py-2 rounded-lg text-sm font-semibold text-blue-400 bg-amber-400 hover:text-blue-600 transition transform hover:scale-105"
+                      className="px-4 py-2 rounded-lg text-sm font-semibold text-blue-700 bg-yellow-200 hover:bg-yellow-300 transition"
                     >
                       Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(event._id)}
+                      className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-red-500 hover:bg-red-600 transition"
+                    >
+                      Delete
                     </button>
                   </td>
                 </tr>

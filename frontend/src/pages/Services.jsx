@@ -34,7 +34,7 @@ const Services = () => {
     {
       title: 'Virtual & Hybrid Event Hosting',
       description: `In the evolving landscape of event management, we offer powerful tools for hosting both fully virtual and hybrid events. Our platform supports seamless live streaming, interactive Q&A sessions, live polls, breakout rooms, and real-time chat functionalities — all integrated within a smooth and secure interface. Organizers can easily manage both on-site and remote attendees, ensuring a unified experience across channels.`,
-      },
+    },
   ];
 
   return (
