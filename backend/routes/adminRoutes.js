@@ -76,5 +76,20 @@ router.put('/events/:id', async (req, res) => {
     res.status(500).json({ message: 'Failed to update event', error: err.message });
   }
 });
+router.delete('/events/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedEvent = await Event.findByIdAndDelete(id);
+
+    if (!deletedEvent) {
+      return res.status(404).json({ message: 'Event not found' });
+    }
+
+    res.json({ message: 'Event deleted successfully', event: deletedEvent });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to delete event', error: err.message });
+  }
+});
 
 export default router;
