@@ -89,23 +89,25 @@ const Booking = () => {
   };
 
   return (
-    <div className="w-screen min-h-screen bg-gradient-to-br from-cyan-100 via-white to-blue-100 flex items-center justify-center p-6">
-    <div className="w-full max-w-xl bg-white shadow-2xl rounded-3xl p-10 transition-all duration-300 hover:shadow-3xl hover:scale-[1.01] border border-blue-100">
-      <h2 className="text-4xl font-extrabold text-center text-blue-700 mb-2 tracking-wide drop-shadow-md">
-        🎫 Book Your Spot
+    <div className="w-screen min-h-screen bg-gradient-to-br from-sky-100 via-white to-blue-100 flex items-center justify-center p-6">
+    <div className="w-full max-w-2xl bg-white/70 backdrop-blur-md border border-white/30 shadow-2xl rounded-3xl p-10 transition-all duration-300 hover:shadow-[0_0_30px_5px_rgba(0,0,0,0.1)] hover:scale-[1.015]">
+      <h2 className="text-4xl md:text-5xl font-extrabold text-center text-blue-700 mb-2 tracking-wide drop-shadow-md">
+        🎟️ Book Your Spot
       </h2>
-      <p className="text-center text-gray-600 mb-6 text-lg">
-        You're booking for:{" "}
-        <span className="text-black font-semibold italic">{eventTitle}</span>
+      <p className="text-center text-gray-700 mb-6 text-lg md:text-xl font-medium">
+        You’re booking for:{" "}
+        <span className="text-black font-bold italic underline decoration-dashed underline-offset-4">
+          {eventTitle}
+        </span>
       </p>
   
       {ticketPrice === null ? (
-        <p className="text-center text-gray-500 animate-pulse">Loading event details...</p>
+        <p className="text-center text-gray-500 animate-pulse">Fetching event details...</p>
       ) : !submitted ? (
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="group">
-            <label className="block text-sm font-semibold text-gray-700 mb-1 group-hover:text-blue-500 transition">
-              Your Name:
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              ✏️ Your Name:
             </label>
             <input
               type="text"
@@ -113,14 +115,14 @@ const Booking = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              placeholder="John Doe"
-              className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
+              placeholder="e.g., John Doe"
+              className="w-full px-4 py-3 text-gray-900 bg-white/80 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
             />
           </div>
   
-          <div className="group">
-            <label className="block text-sm font-semibold text-gray-700 mb-1 group-hover:text-blue-500 transition">
-              Email Address:
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              📧 Email Address:
             </label>
             <input
               type="email"
@@ -129,13 +131,13 @@ const Booking = () => {
               onChange={handleChange}
               required
               placeholder="you@example.com"
-              className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
+              className="w-full px-4 py-3 text-gray-900 bg-white/80 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
             />
           </div>
   
-          <div className="group">
-            <label className="block text-sm font-semibold text-gray-700 mb-1 group-hover:text-blue-500 transition">
-              Number of Tickets:
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              🎫 Number of Tickets:
             </label>
             <input
               type="number"
@@ -144,45 +146,45 @@ const Booking = () => {
               min="1"
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
+              className="w-full px-4 py-3 text-gray-900 bg-white/80 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
             />
           </div>
   
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">
-              Total Payment (₹):
+              💰 Total Payment (₹):
             </label>
             <input
               type="text"
               value={isNaN(totalPayment) ? "" : totalPayment}
               readOnly
-              className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-700 cursor-not-allowed"
+              className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-2xl text-gray-700 cursor-not-allowed"
             />
           </div>
   
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">
-              Pay to this UPI ID:
+              📱 UPI ID (Pay to):
             </label>
             <input
               type="text"
               value="9109554428@amazonpay"
               readOnly
-              className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-800 cursor-not-allowed tracking-wide"
+              className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded-2xl text-blue-700 font-semibold tracking-wider cursor-not-allowed"
             />
           </div>
   
           {error && (
-            <p className="text-red-500 text-center font-medium animate-pulse">{error}</p>
+            <p className="text-red-500 text-center font-semibold animate-pulse">{error}</p>
           )}
   
           {!isPaid ? (
             <button
               type="button"
               onClick={handleFakePayment}
-              className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold py-3 rounded-xl hover:from-yellow-500 hover:to-yellow-600 transition duration-300 shadow-md"
+              className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold py-3 rounded-2xl hover:from-yellow-500 hover:to-yellow-600 shadow-md hover:shadow-lg transition duration-300"
             >
-              {paying ? "Processing Payment..." : "Pay Now"}
+              {paying ? "Processing..." : "💳 Pay Now"}
             </button>
           ) : (
             <p className="text-green-600 text-center font-semibold animate-pulse">
@@ -193,24 +195,25 @@ const Booking = () => {
           <button
             type="submit"
             disabled={!isPaid}
-            className={`w-full py-3 rounded-xl font-bold transition duration-300 ${
+            className={`w-full py-3 rounded-2xl font-bold shadow-md transition duration-300 ${
               isPaid
-                ? "bg-blue-600 text-white hover:bg-blue-700 shadow-lg"
+                ? "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg"
                 : "bg-gray-200 text-gray-400 cursor-not-allowed"
             }`}
           >
-            Confirm Booking
+            📩 Confirm Booking
           </button>
         </form>
       ) : (
         <div className="text-center mt-8">
-          <p className="text-green-600 text-lg font-medium animate-bounce">
+          <p className="text-green-600 text-lg font-semibold animate-bounce">
             🎉 Booking successful! Redirecting...
           </p>
         </div>
       )}
     </div>
   </div>
+  
   
 
   );
