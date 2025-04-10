@@ -43,6 +43,9 @@ const Navbar = () => {
             <Link to="/admin-login" className="hover:text-blue-600 transition duration-200" onClick={() => setIsMenuOpen(false)}>Admin</Link>
           </li>
           <li>
+            <Link to="/services" className="hover:text-blue-600 transition duration-200" onClick={() => setIsMenuOpen(false)}>Services</Link>
+          </li>
+          <li>
               <Link
                   to="/login"
                   className="text-blue-600 border border-blue-500 px-4 py-2 rounded-lg hover:bg-yellow-100 transition duration-300"
@@ -51,15 +54,7 @@ const Navbar = () => {
               Logout
               </Link>
           </li>
-          <li>
-                <Link
-                  to="/register"
-                  className="bg-gradient-to-r from-blue-100 to-blue-100 text-white px-4 py-2 rounded-lg shadow hover:scale-105 hover:from-yellow-100 hover:to-yellow-100 transition duration-300"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                Register
-                </Link>
-          </li>
+         
         </ul>
       </div>
     </nav>
