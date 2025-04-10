@@ -1,17 +1,14 @@
-import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, {  useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
-  const { isLoggedIn, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
+  
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
+  
 
   return (
     <nav className="sticky top-0 z-50 bg-white/70 backdrop-blur-lg shadow-md px-6 py-4">
@@ -45,48 +42,24 @@ const Navbar = () => {
           <li>
             <Link to="/admin-login" className="hover:text-blue-600 transition duration-200" onClick={() => setIsMenuOpen(false)}>Admin</Link>
           </li>
-
-          {isLoggedIn ? (
-            <>
-              <li>
-                <Link to="/booking" className="hover:text-blue-600 transition duration-200" onClick={() => setIsMenuOpen(false)}>
-                  Bookings
-                </Link>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    handleLogout();
-                    setIsMenuOpen(false);
-                  }}
-                  className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg shadow hover:scale-105 hover:from-red-600 hover:to-red-700 transition duration-300"
-                >
-                  Logout
-                </button>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <Link
+          <li>
+              <Link
                   to="/login"
                   className="text-blue-600 border border-blue-500 px-4 py-2 rounded-lg hover:bg-yellow-100 transition duration-300"
                   onClick={() => setIsMenuOpen(false)}
-                >
-                  Logout
-                </Link>
-              </li>
-              <li>
+              >
+              Logout
+              </Link>
+          </li>
+          <li>
                 <Link
                   to="/register"
                   className="bg-gradient-to-r from-blue-100 to-blue-100 text-white px-4 py-2 rounded-lg shadow hover:scale-105 hover:from-yellow-100 hover:to-yellow-100 transition duration-300"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Register
+                Register
                 </Link>
-              </li>
-            </>
-          )}
+          </li>
         </ul>
       </div>
     </nav>
