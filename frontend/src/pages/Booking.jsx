@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import QRCode from "qrcode.react"; // You'll need to install this package: npm install qrcode.react
+import { QRCode } from "qrcode.react";
+
 
 const Booking = () => {
   const { id } = useParams();
