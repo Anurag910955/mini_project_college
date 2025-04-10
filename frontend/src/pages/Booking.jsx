@@ -114,7 +114,7 @@ const Booking = () => {
             onChange={handleChange}
             required
             placeholder="Name"
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
           />
         </div>
 
@@ -129,7 +129,7 @@ const Booking = () => {
             onChange={handleChange}
             required
             placeholder="E-mail"
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
           />
         </div>
 
@@ -144,7 +144,7 @@ const Booking = () => {
             min="1"
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
           />
         </div>
 
@@ -197,7 +197,7 @@ const Booking = () => {
           className={`w-full py-3 rounded-xl font-bold transition duration-300 ${
             isPaid
               ? "text-blue bg-blue-600 hover:bg-blue-700"
-              : "text-gray-50 bg-gray-400 cursor-not-allowed"
+              : " cursor-not-allowed"
           }`}
         >
           Confirm Booking
