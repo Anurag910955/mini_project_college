@@ -31,6 +31,10 @@ const Services = () => {
       title: '24/7 Customer Support',
       description: `Our dedicated support team is available round-the-clock to assist users and organizers with any issues or queries. From troubleshooting login issues to handling ticket cancellations and refunds, our responsive support ensures quick resolutions. Users can reach us via email, in-app chat, or our contact form. We also maintain an extensive FAQ section and help center for self-service support.`,
     },
+    {
+      title: 'Virtual & Hybrid Event Hosting',
+      description: `In the evolving landscape of event management, we offer powerful tools for hosting both fully virtual and hybrid events. Our platform supports seamless live streaming, interactive Q&A sessions, live polls, breakout rooms, and real-time chat functionalities — all integrated within a smooth and secure interface. Organizers can easily manage both on-site and remote attendees, ensuring a unified experience across channels.`,
+      },
   ];
 
   return (
