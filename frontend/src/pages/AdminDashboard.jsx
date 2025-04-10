@@ -235,7 +235,7 @@ const AdminDashboard = () => {
                   <td className="p-4 border">
                     <button
                       onClick={() => handleEdit(event)}
-                      className="px-4 py-2 rounded-lg text-sm font-semibold text-blue-400 bg-amber-100 hover:text-blue-600 transition transform hover:scale-105"
+                      className="px-4 py-2 rounded-lg text-sm font-semibold text-blue-400 bg-amber-400 hover:text-blue-600 transition transform hover:scale-105"
                     >
                       Edit
                     </button>
