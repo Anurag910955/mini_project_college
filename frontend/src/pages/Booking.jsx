@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import qr from "../assets/anurag.jpg";
+import qr from "../assets/qr.jpg";
 import { useParams, useNavigate } from "react-router-dom";
 
 const Booking = () => {
