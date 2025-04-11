@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  Legend,
-  ResponsiveContainer
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
-
 
 const AdminDashboard = () => {
   const [events, setEvents] = useState([]);
@@ -20,10 +14,6 @@ const AdminDashboard = () => {
     price: '',
     image: '',
   });
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#B38DDB', '#FF6F91'];
-  const renderCustomLabel = ({ name, percent }) => {
-    return `${name.length > 10 ? name.substring(0, 10) + '…' : name} (${(percent * 100).toFixed(0)}%)`;
-  };
   const [editingId, setEditingId] = useState(null);
 
   const [message, setMessage] = useState('');
@@ -289,82 +279,27 @@ const AdminDashboard = () => {
           </table>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto mt-20 grid grid-cols-1 md:grid-cols-2 gap-10">
-  {/* Tickets Sold Pie Chart */}
-  <div className="bg-white p-6 rounded-2xl shadow-xl overflow-hidden">
-    <h3 className="text-xl font-semibold text-blue-700 mb-4 text-center">Tickets Sold per Event</h3>
-    <ResponsiveContainer width="100%" height={300}>
-      <PieChart>
-        <Pie
-          data={events.map(e => ({
-            name: e.title,
-            value: e.ticketsSold || 0
-          }))}
-          cx="50%"
-          cy="50%"
-          label={renderCustomLabel}
-          labelLine={false}
-          outerRadius={90}
-          fill="#8884d8"
-          dataKey="value"
-        >
-          {events.map((_, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip />
-      </PieChart>
-    </ResponsiveContainer>
-    <div className="max-h-40 overflow-y-auto mt-4 text-sm text-gray-700 px-2">
-      <ul className="grid grid-cols-2 gap-2">
-        {events.map((e, index) => (
-          <li key={index} className="flex items-center space-x-2">
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }}></div>
-            <span>{e.title}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-
-  {/* Amount Collected Pie Chart */}
-  <div className="bg-white p-6 rounded-2xl shadow-xl overflow-hidden">
-    <h3 className="text-xl font-semibold text-blue-700 mb-4 text-center">Total Amount Collected per Event</h3>
-    <ResponsiveContainer width="100%" height={300}>
-      <PieChart>
-        <Pie
-          data={events.map(e => ({
-            name: e.title,
-            value: e.totalAmount || 0
-          }))}
-          cx="50%"
-          cy="50%"
-          label={renderCustomLabel}
-          labelLine={false}
-          outerRadius={90}
-          fill="#82ca9d"
-          dataKey="value"
-        >
-          {events.map((_, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip />
-      </PieChart>
-    </ResponsiveContainer>
-    <div className="max-h-40 overflow-y-auto mt-4 text-sm text-gray-700 px-2">
-      <ul className="grid grid-cols-2 gap-2">
-        {events.map((e, index) => (
-          <li key={index} className="flex items-center space-x-2">
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }}></div>
-            <span>{e.title}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
+      <div className="bg-white p-6 rounded-2xl shadow-xl mt-10">
+  <h3 className="text-xl font-semibold text-blue-700 mb-4 text-center">Tickets Sold per Event</h3>
+  <ResponsiveContainer width="100%" height={400}>
+    <BarChart
+      data={events.map(e => ({
+        name: e.title.length > 15 ? e.title.slice(0, 15) + '…' : e.title,
+        ticketsSold: e.ticketsSold || 0,
+        totalAmount: e.totalAmount || 0
+      }))}
+      margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="name" angle={-40} textAnchor="end" interval={0} />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="ticketsSold" fill="#8884d8" name="Tickets Sold" />
+      <Bar dataKey="totalAmount" fill="#82ca9d" name="Total Amount" />
+    </BarChart>
+  </ResponsiveContainer>
 </div>
-
     </div>
   );
 };
