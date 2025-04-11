@@ -212,7 +212,7 @@ const Booking = () => {
             disabled={!isPaid}
             className={`w-full py-3 rounded-2xl font-bold shadow-md transition duration-300 ${
               isPaid
-                ? "bg-blue-600 text-black hover:bg-blue-700 hover:shadow-lg"
+                ? " text-blue hover:bg-blue-700 hover:shadow-lg"
                 : "bg-white text-white cursor-not-allowed"
             }`}
           >

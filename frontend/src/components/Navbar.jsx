@@ -11,7 +11,7 @@ const Navbar = () => {
   
 
   return (
-    <nav className="sticky top-0 z-50 bg-gray-800 backdrop-blur-lg shadow-md px-6 py-4">
+    <nav className="sticky top-0 z-50 bg-gray-500 backdrop-blur-lg shadow-md px-6 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="text-4xl font-sans font-extrabold text-blue-700 tracking-tight">
           <Link to="/" className="hover:underline underline-offset-4 text-5xl font-serif">Eventify</Link>
