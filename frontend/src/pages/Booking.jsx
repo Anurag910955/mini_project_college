@@ -124,7 +124,7 @@ const Booking = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              placeholder="you@example.com"
+              placeholder="E-mail"
               className="w-full px-4 py-3 text-gray-900 bg-white/80 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
             />
           </div>
