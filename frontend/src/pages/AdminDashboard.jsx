@@ -282,23 +282,24 @@ const AdminDashboard = () => {
       <div className="bg-white p-6 rounded-2xl shadow-xl mt-10">
   <h3 className="text-xl font-semibold text-blue-700 mb-4 text-center">Tickets Sold per Event</h3>
   <ResponsiveContainer width="100%" height={400}>
-    <BarChart
-      data={events.map(e => ({
-        name: e.title.length > 15 ? e.title.slice(0, 15) + '…' : e.title,
-        ticketsSold: e.ticketsSold || 0,
-        totalAmount: e.totalAmount || 0
-      }))}
-      margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" angle={-40} textAnchor="end" interval={0} />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Bar dataKey="ticketsSold" fill="#8884d8" name="Tickets Sold" />
-      <Bar dataKey="totalAmount" fill="#82ca9d" name="Total Amount" />
-    </BarChart>
-  </ResponsiveContainer>
+  <BarChart
+    data={events.map(e => ({
+      name: e.title.length > 15 ? e.title.slice(0, 15) + '…' : e.title,
+      ticketsSold: e.ticketsSold || 0,
+      totalAmount: e.totalAmount || 0
+    }))}
+    margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+  >
+    <CartesianGrid strokeDasharray="3 3" />
+    <XAxis dataKey="name" angle={-40} textAnchor="end" interval={0} />
+    <YAxis yAxisId="left" label={{ value: 'Tickets Sold', angle: -90, position: 'insideLeft' }} />
+    <YAxis yAxisId="right" orientation="right" label={{ value: 'Total Amount (₹)', angle: 90, position: 'insideRight' }} />
+    <Tooltip />
+    <Legend />
+    <Bar yAxisId="left" dataKey="ticketsSold" fill="#8884d8" name="Tickets Sold" />
+    <Bar yAxisId="right" dataKey="totalAmount" fill="#82ca9d" name="Total Amount" />
+  </BarChart>
+</ResponsiveContainer>
 </div>
     </div>
   );
