@@ -21,7 +21,9 @@ const AdminDashboard = () => {
     image: '',
   });
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#B38DDB', '#FF6F91'];
-
+  const renderCustomLabel = ({ name, percent }) => {
+    return `${name.length > 10 ? name.substring(0, 10) + '…' : name} (${(percent * 100).toFixed(0)}%)`;
+  };
   const [editingId, setEditingId] = useState(null);
 
   const [message, setMessage] = useState('');
@@ -289,19 +291,20 @@ const AdminDashboard = () => {
       </div>
       <div className="max-w-6xl mx-auto mt-20 grid grid-cols-1 md:grid-cols-2 gap-10">
   {/* Tickets Sold Pie Chart */}
-  <div className="bg-white p-6 rounded-2xl shadow-xl">
+  <div className="bg-white p-6 rounded-2xl shadow-xl overflow-hidden">
     <h3 className="text-xl font-semibold text-blue-700 mb-4 text-center">Tickets Sold per Event</h3>
     <ResponsiveContainer width="100%" height={300}>
       <PieChart>
         <Pie
-          data={events.map((e) => ({
+          data={events.map(e => ({
             name: e.title,
             value: e.ticketsSold || 0
           }))}
           cx="50%"
           cy="50%"
-          label
-          outerRadius={100}
+          label={renderCustomLabel}
+          labelLine={false}
+          outerRadius={90}
           fill="#8884d8"
           dataKey="value"
         >
@@ -310,25 +313,35 @@ const AdminDashboard = () => {
           ))}
         </Pie>
         <Tooltip />
-        <Legend />
       </PieChart>
     </ResponsiveContainer>
+    <div className="max-h-40 overflow-y-auto mt-4 text-sm text-gray-700 px-2">
+      <ul className="grid grid-cols-2 gap-2">
+        {events.map((e, index) => (
+          <li key={index} className="flex items-center space-x-2">
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }}></div>
+            <span>{e.title}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 
   {/* Amount Collected Pie Chart */}
-  <div className="bg-white p-6 rounded-2xl shadow-xl">
+  <div className="bg-white p-6 rounded-2xl shadow-xl overflow-hidden">
     <h3 className="text-xl font-semibold text-blue-700 mb-4 text-center">Total Amount Collected per Event</h3>
     <ResponsiveContainer width="100%" height={300}>
       <PieChart>
         <Pie
-          data={events.map((e) => ({
+          data={events.map(e => ({
             name: e.title,
             value: e.totalAmount || 0
           }))}
           cx="50%"
           cy="50%"
-          label
-          outerRadius={100}
+          label={renderCustomLabel}
+          labelLine={false}
+          outerRadius={90}
           fill="#82ca9d"
           dataKey="value"
         >
@@ -337,12 +350,20 @@ const AdminDashboard = () => {
           ))}
         </Pie>
         <Tooltip />
-        <Legend />
       </PieChart>
     </ResponsiveContainer>
+    <div className="max-h-40 overflow-y-auto mt-4 text-sm text-gray-700 px-2">
+      <ul className="grid grid-cols-2 gap-2">
+        {events.map((e, index) => (
+          <li key={index} className="flex items-center space-x-2">
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }}></div>
+            <span>{e.title}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 </div>
-
 
     </div>
   );
