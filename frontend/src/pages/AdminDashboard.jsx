@@ -1,4 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from 'recharts';
+
 
 const AdminDashboard = () => {
   const [events, setEvents] = useState([]);
@@ -11,6 +20,8 @@ const AdminDashboard = () => {
     price: '',
     image: '',
   });
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#B38DDB', '#FF6F91'];
+
   const [editingId, setEditingId] = useState(null);
 
   const [message, setMessage] = useState('');
@@ -276,6 +287,63 @@ const AdminDashboard = () => {
           </table>
         </div>
       </div>
+      <div className="max-w-6xl mx-auto mt-20 grid grid-cols-1 md:grid-cols-2 gap-10">
+  {/* Tickets Sold Pie Chart */}
+  <div className="bg-white p-6 rounded-2xl shadow-xl">
+    <h3 className="text-xl font-semibold text-blue-700 mb-4 text-center">Tickets Sold per Event</h3>
+    <ResponsiveContainer width="100%" height={300}>
+      <PieChart>
+        <Pie
+          data={events.map((e) => ({
+            name: e.title,
+            value: e.ticketsSold || 0
+          }))}
+          cx="50%"
+          cy="50%"
+          label
+          outerRadius={100}
+          fill="#8884d8"
+          dataKey="value"
+        >
+          {events.map((_, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+        <Tooltip />
+        <Legend />
+      </PieChart>
+    </ResponsiveContainer>
+  </div>
+
+  {/* Amount Collected Pie Chart */}
+  <div className="bg-white p-6 rounded-2xl shadow-xl">
+    <h3 className="text-xl font-semibold text-blue-700 mb-4 text-center">Total Amount Collected per Event</h3>
+    <ResponsiveContainer width="100%" height={300}>
+      <PieChart>
+        <Pie
+          data={events.map((e) => ({
+            name: e.title,
+            value: e.totalAmount || 0
+          }))}
+          cx="50%"
+          cy="50%"
+          label
+          outerRadius={100}
+          fill="#82ca9d"
+          dataKey="value"
+        >
+          {events.map((_, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+        <Tooltip />
+        <Legend />
+      </PieChart>
+    </ResponsiveContainer>
+  </div>
+</div>
+
+
     </div>
   );
 };
