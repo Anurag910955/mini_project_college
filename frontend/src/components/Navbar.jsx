@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-white/70 backdrop-blur-lg shadow-md px-6 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="text-3xl font-extrabold text-blue-700 tracking-tight">
-          <Link to="/" className="hover:underline underline-offset-4 text-5xl">Eventify</Link>
+          <Link to="/" className="hover:underline underline-offset-4 text-5xl font-sans">Eventify</Link>
         </div>
 
         {/* Mobile Menu Icon */}
