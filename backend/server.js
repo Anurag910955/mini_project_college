@@ -20,7 +20,7 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-  origin: 'https://mini-project-medi-caps.vercel.app', 
+  origin: 'https://mini-project-college.vercel.app', 
   credentials: true
 }));
 
