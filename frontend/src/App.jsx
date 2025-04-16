@@ -25,8 +25,8 @@ const Layout = () => {
     <>
       {!hideLayout && <Navbar />}
       <main className="content">
+      <ScrollToTop />
         <Routes>
-        <ScrollToTop />
           {/* Public routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
