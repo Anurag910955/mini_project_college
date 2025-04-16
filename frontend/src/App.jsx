@@ -15,6 +15,7 @@ import ProtectedRoute from './components/ProtectedRoute.jsx';
 import AdminDashboard from './pages/AdminDashboard';
 import Services from './pages/Services'; 
 import AdminLogin from './pages/AdminLogin';
+import ScrollToTop from './components/ScrollToTop'; 
 
 const Layout = () => {
   const location = useLocation();
@@ -25,6 +26,7 @@ const Layout = () => {
       {!hideLayout && <Navbar />}
       <main className="content">
         <Routes>
+        <ScrollToTop />
           {/* Public routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
