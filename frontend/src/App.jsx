@@ -15,7 +15,7 @@ import ProtectedRoute from './components/ProtectedRoute.jsx';
 import AdminDashboard from './pages/AdminDashboard';
 import Services from './pages/Services'; 
 import AdminLogin from './pages/AdminLogin';
-import ScrollToTop from './components/ScrollToTop'; 
+import ScrollToTop from './components/ScrollToTop.jsx'; 
 
 const Layout = () => {
   const location = useLocation();
